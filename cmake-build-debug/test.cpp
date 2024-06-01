@@ -1,10 +1,11 @@
 #include <iostream>
-#include <vector>
-#include <vector>
-	 
-#include <windows.h>
 using namespace std;
+int sum(int a, int b){
+	return a+b
+	;
+	}
 int main()
 {
+	cout << sum(1,2) << endl;
 	return 0;
 }

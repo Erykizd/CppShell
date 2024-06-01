@@ -25,6 +25,7 @@ void clickKeyNTimes(auto key, int n);
 void saveVectorToFile(vector<string>& vec, const string& fileName);
 bool runCppFile(const string& fileName);
 int getKeyForChar(char ch, int& additionalKey);
+vector<string> getAllBasicVariableTypes();
 
 bool isScopeTemporary = false;
 
@@ -59,7 +60,7 @@ int main()
     while(true)
     {
         programLines.clear();
-        cout << "> ";
+        cout << "\n> ";
         //use arrows to get previous commands
         while(!isAnyLetterPressed() && !isKeyPressed(VK_RETURN) && oldScopes.size() > 0)
         {
@@ -86,7 +87,7 @@ int main()
         cleanedCurrentInputScope = deleteNotBracketsOrNotQuote(currentInputScope);
         Sleep(200); //wait in ms for pressing shift if no new scope needed
         closedScope = areAllBracketsAndQuotesClosed(cleanedCurrentInputScope) && !isKeyPressed(VK_SHIFT);
-        if(isKeyPressed(VK_SHIFT))
+        if(isKeyPressed(VK_CONTROL))
         {
             displayCppFileContent = !displayCppFileContent;
         }
@@ -238,20 +239,8 @@ string typeOfScope(string& scope)
 {
     isScopeTemporary = false;
 
-    vector<string> basicTypesStrs = {"int","double","float", "char", "void", "bool", "string", "vector", "array",
-                                "short", "long", "long long", "unsigned short", "long double",
-                                "unsigned int", "unsigned long", "unsigned long long", "unsigned char"};
+    vector<string> basicTypesStrs = getAllBasicVariableTypes();
     vector<string> elementsToAdd;
-
-    for (int i = 0; i < basicTypesStrs.size(); ++i)
-    {
-        elementsToAdd.push_back(basicTypesStrs[i] + "*");
-        elementsToAdd.push_back(basicTypesStrs[i] + " *");
-        elementsToAdd.push_back(basicTypesStrs[i] + "**");
-        elementsToAdd.push_back(basicTypesStrs[i] + " **");
-        elementsToAdd.push_back(basicTypesStrs[i] + "&");
-        elementsToAdd.push_back(basicTypesStrs[i] + " &");
-    }
 
     joinVectorElements(basicTypesStrs, elementsToAdd);
 
@@ -338,11 +327,11 @@ bool isFunctionWithType(string& scope, string& basicTypeStr)
     {
         if(isCharInString(scope.at(i),")"))
         {
-            break;
+            return true;
         }
     }
 
-     return true;
+     return false;
 }
 
 void typeCode(string& textToType)
@@ -430,13 +419,13 @@ void addScopeToValidVector(string &scope, vector<string> &objectsBeforeMainFunct
     }
     else
     {
-        if(isScopeTemporary && !(scope.substr(0,4) == "cout") && !(scope.at(scope.size() - 1) == ';'))
+        if(isScopeTemporary && scope.substr(scope.size() - 1, 1) == ";")
         {
-            mainFunctionLines.push_back("\tcout << " + scope + " << endl;");
+            mainFunctionLines.push_back("\t" + scope);
         }
         else
         {
-            mainFunctionLines.push_back("\t" + scope);
+            mainFunctionLines.push_back("\tcout << " + scope + " << endl;");
         }
         swap(mainFunctionLines[mainFunctionLines.size() - 2], mainFunctionLines[mainFunctionLines.size() - 1]);
         swap(mainFunctionLines[mainFunctionLines.size() - 3], mainFunctionLines[mainFunctionLines.size() - 2]);
@@ -465,4 +454,119 @@ int getKeyForChar(char ch, int& additionalKey)
         additionalKey = VK_MENU; // alt button
 
     return virtualKey;
+}
+
+vector<string> getAllBasicVariableTypes()
+{
+    vector<string> types =
+    {
+            "bool",
+            "char",
+            "signed char",
+            "unsigned char",
+            "wchar_t",
+            "char16_t",
+            "char32_t",
+            "short",
+            "unsigned short",
+            "int",
+            "unsigned int",
+            "long",
+            "unsigned long",
+            "long long",
+            "unsigned long long",
+            "float",
+            "double",
+            "long double",
+            "void",
+            "string",
+            "vector",
+            "POINT",         // from windows.h
+            "BOOL",
+            "BOOLEAN",
+            "BYTE",
+            "CHAR",
+            "DWORD",
+            "DWORDLONG",
+            "DWORD_PTR",
+            "DWORD32",
+            "DWORD64",
+            "FLOAT",
+            "INT",
+            "INT_PTR",
+            "INT8",
+            "INT16",
+            "INT32",
+            "INT64",
+            "LONG",
+            "LONGLONG",
+            "LONG_PTR",
+            "LONG32",
+            "LONG64",
+            "SHORT",
+            "SIZE_T",
+            "SSIZE_T",
+            "UCHAR",
+            "UINT",
+            "UINT_PTR",
+            "UINT8",
+            "UINT16",
+            "UINT32",
+            "UINT64",
+            "ULONG",
+            "ULONGLONG",
+            "ULONG_PTR",
+            "ULONG32",
+            "ULONG64",
+            "USHORT",
+            "WCHAR",
+            "WORD",
+            "WPARAM",
+            "LPARAM",
+            "PBOOL",
+            "PBOOLEAN",
+            "PBYTE",
+            "PCHAR",
+            "PCSTR",
+            "PCTSTR",
+            "PCWSTR",
+            "PDWORD",
+            "PFLOAT",
+            "PINT",
+            "PLONG",
+            "PSHORT",
+            "PSTR",
+            "PTBYTE",
+            "PUCHAR",
+            "PUINT",
+            "PULONG",
+            "PUSHORT",
+            "PWCHAR",
+            "PWORD",
+            "LPBOOL",
+            "LPBYTE",
+            "LPCSTR",
+            "LPCWSTR",
+            "LPDWORD",
+            "LPINT",
+            "LPLONG",
+            "LPSTR",
+            "LPTSTR",
+            "LPWSTR",
+            "LPVOID",
+            "RECT",
+            "SIZE",
+            "FILETIME",
+            "SYSTEMTIME",
+            "SECURITY_ATTRIBUTES",
+            "OVERLAPPED",
+            "MSG",
+            "WNDCLASS",
+            "WNDCLASSEX",
+            "BITMAP",
+            "RGBQUAD",
+            "BITMAPINFOHEADER",
+            "BITMAPINFO"
+    };
+    return types;
 }
