@@ -37,7 +37,7 @@ int main()
     string currentInputScope;
     string cleanedCurrentInputScope;
     int indexInOldScopes = 0;
-    vector<string> oldScopes;
+    vector<string> oldScopes = {""};
     vector<string> inputLines;
     vector<string> preprocessorInstructions;
     int preprocessorInstructionsOldSize;
@@ -60,7 +60,7 @@ int main()
     while(true)
     {
         programLines.clear();
-        cout << "\n> ";
+        cout << "c++shell>";
         //use arrows to get previous commands
         while(!isAnyLetterPressed() && !isKeyPressed(VK_RETURN) && oldScopes.size() > 0)
         {
@@ -83,6 +83,11 @@ int main()
         }
 
         getline(cin, currentInputLine);
+        if(currentInputLine.size() < 1)
+        {
+            currentInputLine = " ";
+        }
+
         currentInputScope += currentInputLine;
         cleanedCurrentInputScope = deleteNotBracketsOrNotQuote(currentInputScope);
         Sleep(200); //wait in ms for pressing shift if no new scope needed
@@ -94,12 +99,16 @@ int main()
 
         while(!closedScope)
         {
-            cout << ">... ";
+            cout << "c++shell...>";
             getline(cin, currentInputLine);
             currentInputScope += ("\n\t" + currentInputLine);
             cleanedCurrentInputScope = deleteNotBracketsOrNotQuote(currentInputScope);
             Sleep(200); //wait in ms
             closedScope = areAllBracketsAndQuotesClosed(cleanedCurrentInputScope) && !isKeyPressed(VK_SHIFT);
+            if(isKeyPressed(VK_MENU)) // press alt to quit loop if shit happens
+            {
+                break;
+            }
         }
 
         objectsBeforeMainFunctionOldSize = objectsBeforeMainFunction.size();
@@ -278,6 +287,11 @@ string typeOfScope(string& scope)
 
     isScopeTemporary = true;
 
+    if(scope.contains('='))
+    {
+        isScopeTemporary = false;
+    }
+
     return "none";
 }
 
@@ -419,13 +433,13 @@ void addScopeToValidVector(string &scope, vector<string> &objectsBeforeMainFunct
     }
     else
     {
-        if(isScopeTemporary && scope.substr(scope.size() - 1, 1) == ";")
+        if(isScopeTemporary && scope.at(scope.size() - 1) != ';')
         {
-            mainFunctionLines.push_back("\t" + scope);
+            mainFunctionLines.push_back("\tcout << " + scope + " << endl;");
         }
         else
         {
-            mainFunctionLines.push_back("\tcout << " + scope + " << endl;");
+            mainFunctionLines.push_back("\t" + scope);
         }
         swap(mainFunctionLines[mainFunctionLines.size() - 2], mainFunctionLines[mainFunctionLines.size() - 1]);
         swap(mainFunctionLines[mainFunctionLines.size() - 3], mainFunctionLines[mainFunctionLines.size() - 2]);
