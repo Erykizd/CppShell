@@ -114,8 +114,6 @@ int main()
         joinVectorElements(programLines, objectsBeforeMainFunction);
         joinVectorElements(programLines, mainFunctionLines);
 
-        system("cls");
-
         if(displayCppFileContent)
         {
             cout << "cpp file content: " << endl;
