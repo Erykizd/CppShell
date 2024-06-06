@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.28"
+						"string" : "3.24.2"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "c__shell::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-c__shell-Debug-11f791de1ade9c54077d.json",
+					"jsonFile" : "target-c__shell-Debug-becad961be07a90254dc.json",
 					"name" : "c__shell",
 					"projectIndex" : 0
 				}
@@ -55,6 +55,6 @@
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 4
 	}
 }

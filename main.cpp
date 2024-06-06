@@ -26,6 +26,9 @@ void saveVectorToFile(vector<string>& vec, const string& fileName);
 bool runCppFile(const string& fileName);
 int getKeyForChar(char ch, int& additionalKey);
 vector<string> getAllBasicVariableTypes();
+bool startsWith(string& str, string& pat);
+bool endsWith(string& str, string& pat);
+bool contains(string& str, string& pat);
 
 bool isScopeTemporary = false;
 
@@ -287,7 +290,8 @@ string typeOfScope(string& scope)
 
     isScopeTemporary = true;
 
-    if(scope.contains('='))
+    string eq = "=";
+    if(contains(scope, eq))
     {
         isScopeTemporary = false;
     }
@@ -419,7 +423,8 @@ void addScopeToValidVector(string &scope, vector<string> &objectsBeforeMainFunct
      vector<string> &mainFunctionLines)
 {
     string typeOfCurrentScope = typeOfScope(scope);
-    if(typeOfCurrentScope == "class" || typeOfCurrentScope == "struct" || typeOfCurrentScope.ends_with("function"))
+    string funStr = "function";
+    if(typeOfCurrentScope == "class" || typeOfCurrentScope == "struct" || endsWith(typeOfCurrentScope, funStr))
     {
         objectsBeforeMainFunction.push_back(scope);
     }
@@ -583,4 +588,49 @@ vector<string> getAllBasicVariableTypes()
             "BITMAPINFO"
     };
     return types;
+}
+
+bool startsWith(string& str, string& pat)
+{
+    if(str.size() < pat.size())
+    {
+        return false;
+    }
+
+    if (str.substr(0,pat.size()) == pat)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool endsWith(string& str, string& pat)
+{
+    if(str.size() < pat.size())
+    {
+        return false;
+    }
+
+    if (str.substr(str.size() - pat.size(), pat.size()) == pat)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool contains(string& str, string& pat)
+{
+    if(str.size() < pat.size())
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < str.size() - pat.size() + 1; ++i)
+    {
+        if (str.substr(i, pat.size()) == pat)
+        {
+            return true;
+        }
+    }
+    return false;
 }

@@ -10,14 +10,14 @@
 				{
 					"includeDirectories" : 
 					[
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include",
 						"D:/programy/CLion/bin/mingw/include",
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed",
 						"D:/programy/CLion/bin/mingw/x86_64-w64-mingw32/include"
 					],
 					"linkDirectories" : 
 					[
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0",
 						"D:/programy/CLion/bin/mingw/lib/gcc",
 						"D:/programy/CLion/bin/mingw/x86_64-w64-mingw32/lib",
 						"D:/programy/CLion/bin/mingw/lib"
@@ -44,7 +44,7 @@
 					]
 				},
 				"path" : "D:/programy/CLion/bin/mingw/bin/gcc.exe",
-				"version" : "13.1.0"
+				"version" : "11.2.0"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 
@@ -61,17 +61,17 @@
 				{
 					"includeDirectories" : 
 					[
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++",
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32",
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward",
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include",
 						"D:/programy/CLion/bin/mingw/include",
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed",
 						"D:/programy/CLion/bin/mingw/x86_64-w64-mingw32/include"
 					],
 					"linkDirectories" : 
 					[
-						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0",
+						"D:/programy/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0",
 						"D:/programy/CLion/bin/mingw/lib/gcc",
 						"D:/programy/CLion/bin/mingw/x86_64-w64-mingw32/lib",
 						"D:/programy/CLion/bin/mingw/lib"
@@ -101,7 +101,7 @@
 					]
 				},
 				"path" : "D:/programy/CLion/bin/mingw/bin/g++.exe",
-				"version" : "13.1.0"
+				"version" : "11.2.0"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
@@ -116,10 +116,7 @@
 				"mpp",
 				"CPP",
 				"ixx",
-				"cppm",
-				"ccm",
-				"cxxm",
-				"c++m"
+				"cppm"
 			]
 		},
 		{
